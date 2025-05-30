@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-petclinic-recreate
+  labels:
+    app: spring-petclinic-recreate
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: spring-petclinic-recreate
+  template:
+    metadata:
+      labels:
+        app: spring-petclinic-recreate
+    spec:
+      containers:
+      - name: spring-petclinic-rest
+        image: docker.io/springcommunity/spring-petclinic-rest:3.0.2
+        ports:
+        - containerPort: 9966
